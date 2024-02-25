@@ -1,0 +1,80 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Theme definition: https://www.realtimecolors.com/?colors=edf2f2-0d1516-80f0ff-36737c-7c25fe&fonts=Poppins-Poppins */
+
+@layer base {
+  :root {
+    /* --text: 180 16% 6%; */
+    --background: 187 26% 93%;
+    --foreground: 180 16% 6%;
+    --card: 187 26% 93%;
+    --card-foreground: 180 16% 6%;
+    --popover: 187 26% 93%;
+    --popover-foreground: 180 16% 6%;
+    --primary: 187 100% 25%;
+    --primary-foreground: 187 26% 93%;
+    --secondary: 189 39% 65%;
+    --secondary-foreground: 180 16% 6%;
+    --muted: 187 25% 20%;
+    --muted-foreground: 180 16% 70%;
+    --accent: 264 99% 43%;
+    --accent-foreground: 187 26% 93%;
+    --destructive: 0 85% 60%;
+    --destructive-foreground: 180 16% 6%;
+    --border: 187 25% 20%;
+    --input: 187 25% 20%;
+    --ring: 264 99% 40%;
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 187 26% 7%;
+    --foreground: 180 16% 94%;
+    --card: 187 26% 7%;
+    --card-foreground: 180 16% 94%;
+    --popover: 187 26% 7%;
+    --popover-foreground: 180 16% 94%;
+    --primary: 187 100% 75%;
+    --primary-foreground: 187 26% 7%;
+    --secondary: 188 39% 35%;
+    --secondary-foreground: 180 16% 94%;
+    --muted: 187 25% 80%;
+    --muted-foreground: 180 16% 94%;
+    --accent: 264 99% 57%;
+    --accent-foreground: 180 16% 94%;
+    --destructive: 0 62% 30%;
+    --destructive-foreground: 180 18% 10%;
+    --border: 188 26% 60%;
+    --input: 187 25% 80%;
+    --ring: 264 99% 60%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+html.dark .shiki,
+html.dark .shiki span {
+  color: var(--shiki-dark) !important;
+  background-color: var(--shiki-dark-bg) !important;
+  /* Optional, if you also want font styles */
+  font-style: var(--shiki-dark-font-style) !important;
+  font-weight: var(--shiki-dark-font-weight) !important;
+  text-decoration: var(--shiki-dark-text-decoration) !important;
+}
+
+.shiki .highlighted-word {
+  background-color: hsl(var(--primary-foreground));
+  border: 1px solid hsl(var(--secondary-foreground));
+  padding: 1px 3px;
+  margin: -1px -3px;
+  border-radius: 4px;
+}
