@@ -40,35 +40,40 @@ const COLORS_PALETTE: Palette[] = [
 export const GradientGenerator: FunctionComponent<
   GradientGeneratorProps
 > = ({}) => {
-  const [currentGradient, setCurrentGradient] = useState(() => {
-    const randomPalette = Math.floor(Math.random() * COLORS_PALETTE.length);
-    return COLORS_PALETTE[randomPalette];
-  });
+  const [currentGradient, setCurrentGradient] = useState(COLORS_PALETTE[1]);
   const [angle, setAngle] = useState(45);
   const [generatedGradient, setGeneratedGradient] = useState("");
+  const [generatedBackground, setGeneratedBackground] = useState({});
 
   const code = `
 background-image: linear-gradient(
   ${angle}deg,
   ${currentGradient.colors.join(",\n  ")}
 );`.trim();
-  const background = {
-    backgroundImage: `linear-gradient(${angle}deg, ${currentGradient.colors.join(
-      ", "
-    )})`,
-  };
+
+  useEffect(() => {
+    const timeout = setTimeout(
+      () =>
+        setGeneratedBackground({
+          backgroundImage: `linear-gradient(45deg, ${currentGradient.colors.join(
+            ", "
+          )})`,
+        }),
+      50
+    );
+
+    return () => clearTimeout(timeout);
+  }, [currentGradient, angle]);
 
   useEffect(() => {
     const generateCodeGradient = async () => {
       const generatedHtml = await codeToHtml({ code, language: "css" });
       setGeneratedGradient(generatedHtml);
     };
-    const timeout = setTimeout(generateCodeGradient, 150);
+    const timeout = setTimeout(generateCodeGradient, 50);
 
     return () => clearTimeout(timeout);
   }, [code]);
-
-  if (typeof window === "undefined") return <div />;
 
   return (
     <DotBackground className="ring-4 ring-white rounded-sm p-8 mt-4">
@@ -237,7 +242,7 @@ background-image: linear-gradient(
 
         <div className="row-start-1 row-end-2 col-start-3 col-end-4 flex flex-col gap-4 items-center">
           <p className="text-xl mb-4">Enjoy the preview ✨</p>
-          <div className="w-full h-60 rounded-md" style={background} />
+          <div className="w-full h-60 rounded-md" style={generatedBackground} />
         </div>
 
         <div className="relative row-start-2 row-end-3 col-start-2 col-end-4">
