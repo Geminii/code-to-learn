@@ -1,19 +1,25 @@
 import type { FunctionComponent } from "react";
 
+import { getMarkdownPages } from "@/utils/getMarkdownPage";
 import Link from "next/link";
-import { getPlaygrounds } from "./getPlaygrounds";
 
 type pageProps = {};
 
+type Playground = {
+  slug: string;
+  title: string;
+  publishDate: string;
+};
+
 export const PlaygroundsPage: FunctionComponent<pageProps> = async () => {
-  const playgrounds = await getPlaygrounds();
+  const playgrounds = await getMarkdownPages<Playground>("playgrounds");
 
   return (
     <ol>
       {playgrounds.map(({ slug, title, publishDate }) => (
         <li key={slug}>
           <h2>
-            <Link href={`/${slug}`}>{title}</Link>
+            <Link href={`/playgrounds/${slug}`}>{title}</Link>
           </h2>
           <p>
             <strong>Published:</strong>{" "}
