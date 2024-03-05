@@ -17,7 +17,7 @@ export const PlaygroundsPage: FunctionComponent<pageProps> = async () => {
   return (
     <ol>
       {playgrounds.map(({ slug, title, publishDate }) => (
-        <li key={slug}>
+        <li key={slug} className="mb-6">
           <h2>
             <Link href={`/playgrounds/${slug}`}>{title}</Link>
           </h2>

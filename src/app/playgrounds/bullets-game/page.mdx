@@ -1,0 +1,17 @@
+import dynamic from 'next/dynamic'
+
+export const DynamicBulletsGameApp = dynamic(() => import('./BulletsGameApp'), {
+  ssr: false,
+})
+
+export const metadata = {
+  title: 'Bullets Game',
+  publishDate: '2024-03-03T14:00:00Z',
+};
+
+# Bullets Game
+
+This is a simple bullets game. It is a good starting point for some fun 😁
+
+
+<DynamicBulletsGameApp className="mt-8" />

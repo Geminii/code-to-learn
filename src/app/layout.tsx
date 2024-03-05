@@ -24,7 +24,9 @@ export default function RootLayout({
     <html lang="en">
       <body className={cn("dark font-sans antialiased", fontSans.variable)}>
         <Header />
-        <div className="mx-auto max-w-5xl my-16 pt-12">{children}</div>
+        <div className="container mx-auto max-w-5xl my-16 pt-12 px-6">
+          {children}
+        </div>
       </body>
     </html>
   );
