@@ -19,7 +19,7 @@ export type BulletsGameConfigurationType = {
 export const INITIAL_NB_BULLETS = 144;
 
 export const NB_BULLETS_BY_LEVEL: Record<Level, number> = {
-  easy: 6,
+  easy: 3,
   medium: 12,
   hard: 24,
 };
