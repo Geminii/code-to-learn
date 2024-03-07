@@ -11,7 +11,7 @@ type Playground = {
   publishDate: string;
 };
 
-export const PlaygroundsPage: FunctionComponent<pageProps> = async () => {
+const PlaygroundsPage: FunctionComponent<pageProps> = async () => {
   const playgrounds = await getMarkdownPages<Playground>("playgrounds");
 
   return (

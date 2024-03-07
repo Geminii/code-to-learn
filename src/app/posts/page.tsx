@@ -11,7 +11,7 @@ type Post = {
   publishDate: string;
 };
 
-export const PostsPage: FunctionComponent<pageProps> = async () => {
+const PostsPage: FunctionComponent<pageProps> = async () => {
   const posts = await getMarkdownPages<Post>("posts");
 
   return (

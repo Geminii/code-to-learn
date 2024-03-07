@@ -4,7 +4,7 @@ import type { Metadata } from "next";
 import { Poppins as FontSans } from "next/font/google";
 import "./globals.css";
 
-export const fontSans = FontSans({
+const fontSans = FontSans({
   subsets: ["latin"],
   weight: ["200", "400", "700", "800"],
   variable: "--font-sans",

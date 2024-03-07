@@ -1,6 +1,6 @@
 "use client";
 import type { FunctionComponent } from "react";
-import type { BulletsGameType } from "./BulletsGameApp";
+import type { BulletsGameType } from "./configuration";
 
 import { Button } from "@/components/ui/Button";
 
