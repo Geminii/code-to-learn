@@ -78,3 +78,15 @@ html.dark .shiki span {
   margin: -1px -3px;
   border-radius: 4px;
 }
+
+.blurred > *:not(.tldr) {
+  @apply animate-blurred-effect blur-sm z-0;
+}
+
+.out-blurred > *:not(.tldr) {
+  @apply animate-outside-blurred-effect blur-0 filter-none;
+}
+
+.tldr {
+  @apply blur-0 z-10 filter-none;
+}

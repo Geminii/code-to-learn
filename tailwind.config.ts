@@ -89,12 +89,22 @@ const config = {
           "10%": { transform: "scale(1)", opacity: "1" },
           "100%": { transform: "scale(12)", opacity: "0" },
         },
+        blurred: {
+          "0%": { filter: "blur(0)" },
+          "100%": { filter: "blur(4px)" },
+        },
+        "outside-blurred": {
+          "0%": { filter: "blur(4px)" },
+          "100%": { filter: "blur(0)" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
         countdown: "scale-up 1s ease-in-out infinite",
         "float-by": "float-by 600ms both cubic-bezier(0,.66,.48,1)",
+        "blurred-effect": "blurred 0.5s ease-in-out",
+        "outside-blurred-effect": "outside-blurred 0.5s ease-in-out",
       },
     },
   },
