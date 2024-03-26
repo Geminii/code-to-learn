@@ -1,11 +1,10 @@
-// Import the MDX plugin
-const withMDX = require("@next/mdx")();
-
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // Configure pageExtensions to support MDX
-  pageExtensions: ["mdx", "ts", "tsx"],
+  experimental: {
+    outputFileTracingIncludes: {
+      "/*": ["./content/**/*"],
+    },
+  },
 };
 
-// Use the MDX plugin
-module.exports = withMDX(nextConfig);
+module.exports = nextConfig;
