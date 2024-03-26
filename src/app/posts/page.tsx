@@ -1,34 +1,64 @@
+import type { PostMetadata } from "@/types";
+import type { Metadata } from "next";
 import type { FunctionComponent } from "react";
 
-import { getMarkdownPages } from "@/utils/getMarkdownPage";
-import Link from "next/link";
+import { BlogSummaryCard } from "@/components/BlogSummaryCard";
+import { TITLE_BLOG } from "@/constants";
+import { readDir, readFile } from "@/helpers/file";
+import matter from "gray-matter";
+import { cache } from "react";
 
-type pageProps = {};
-
-type Post = {
+export type Post = {
   slug: string;
-  title: string;
-  publishDate: string;
+} & PostMetadata;
+
+export const metadata: Metadata = {
+  title: `${TITLE_BLOG} • Blog Posts`,
+  description: "List of all blog posts.",
 };
 
-const PostsPage: FunctionComponent<pageProps> = async () => {
-  const posts = await getMarkdownPages<Post>("posts");
+const getBlogPostList = cache(async () => {
+  const blogPosts: Post[] = [];
+  const filenames = await readDir("/content/posts");
+
+  for (const filename of filenames) {
+    const rawContent = await readFile(`/content/posts/${filename}`);
+    const { data } = matter(rawContent);
+    const blogPostsMetadata = data as PostMetadata;
+
+    blogPosts.push({
+      slug: filename.replace(/\.mdx$/, ""),
+      ...blogPostsMetadata,
+    });
+  }
+
+  return blogPosts.sort((blogPost1, blogPost2) =>
+    blogPost1.publishedOn < blogPost2.publishedOn ? 1 : -1
+  );
+});
+
+const BlogPostsPage: FunctionComponent = async () => {
+  const blogPosts = await getBlogPostList();
 
   return (
-    <ol>
-      {posts.map(({ slug, title, publishDate }) => (
-        <li key={slug}>
-          <h2>
-            <Link href={`/posts/${slug}`}>{title}</Link>
-          </h2>
-          <p>
-            <strong>Published:</strong>{" "}
-            {new Date(publishDate).toLocaleDateString()}{" "}
-          </p>
-        </li>
-      ))}
-    </ol>
+    <div className="">
+      <h1 className="text-4xl font-bold tracking-tight text-black dark:text-white">
+        Latest content:
+      </h1>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-8">
+        {blogPosts.map(({ slug, title, description, publishedOn }) => (
+          <BlogSummaryCard
+            key={slug}
+            href={`/posts/${slug}`}
+            title={title}
+            publishedOn={publishedOn}
+            description={description}
+          />
+        ))}
+      </div>
+    </div>
   );
 };
 
-export default PostsPage;
+export default BlogPostsPage;
