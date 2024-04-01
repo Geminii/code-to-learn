@@ -114,6 +114,44 @@ button {
   padding: 0;
 }
 
+/* Code Snippet */
+pre {
+  @apply overflow-x-auto px-0 py-3 rounded-lg my-4;
+}
+
+pre [data-line] {
+  padding: 0 1rem;
+}
+
+pre [data-highlighted-line] {
+  background: #c8c8ff1a;
+}
+
+code[data-line-numbers] {
+  counter-reset: line;
+}
+
+code[data-line-numbers] > [data-line]::before {
+  counter-increment: line;
+  content: counter(line);
+
+  /* Other styling */
+  display: inline-block;
+  width: 1rem;
+  margin-right: 1rem;
+  text-align: right;
+  color: gray;
+}
+
+mark[data-highlighted-chars] {
+  @apply px-1 py-[2px] bg-[#4E0D30] border-b-2 border-b-[#9E165F] rounded-md;
+}
+
+mark[data-highlighted-chars] > span {
+  @apply text-[#FAA7E0] !important;
+}
+
+/* Blurry effect for TLDR; */
 .blurred > *:not(.tldr) {
   @apply animate-blurred-effect blur-sm z-0;
 }

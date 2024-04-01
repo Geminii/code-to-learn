@@ -1,9 +1,9 @@
 import { TITLE_BLOG } from "@/constants";
 import { readFile } from "@/helpers/file";
-import { COMPONENT_MAP } from "@/helpers/mdx-components";
 import { PostMetadata } from "@/types";
 import matter from "gray-matter";
 import { MDXRemote } from "next-mdx-remote/rsc";
+
 import { notFound } from "next/navigation";
 import { FunctionComponent, cache } from "react";
 
@@ -68,7 +68,7 @@ const BlogPostPage: FunctionComponent<BlogPostPageProps> = async ({
         <hr />
       </div>
 
-      <MDXRemote source={content} components={COMPONENT_MAP} />
+      <MDXRemote source={content} />
     </article>
   );
 };

@@ -1,5 +1,3 @@
-import { Code } from "@/components/Code";
-import { GradientText } from "@/components/GradientText";
 import { TLDR } from "@/components/TLDR";
 
 export const metadata = {
@@ -19,7 +17,7 @@ JavaScript, often abbreviated as JS, is a high-level, interpreted programming la
 
 To start writing JavaScript, all you need is a simple text editor like Notepad or a specialized code editor like Visual Studio Code. JavaScript code is typically embedded directly into HTML documents or included as separate files.
 
-```html
+```html {1-3,4} showLineNumbers /JavaScript/
 <!DOCTYPE html>
 <html>
 <head>
@@ -105,23 +103,3 @@ JavaScript is a fundamental language for web development, enabling dynamic and i
   
   JavaScript is essential for web development, offering dynamic user experiences.
 </TLDR>
-
-## Bonus
-
-<Code language="css" code={`
-.test {
-  background-color: red;
-}
-`} />
-
-## Un titre de second niveau
-
-Du simple text
-
-<button className="bg-primary text-background">Get Started</button>
-
-# Un Titre et <GradientText className="text-4xl">Colors</GradientText>
-
-<GradientText className="text-4xl font-extrabold">Nice!</GradientText>
-
-#### Un nouveau titre ?
