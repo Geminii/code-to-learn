@@ -22,7 +22,7 @@ export const getMarkdownPages = async <T>(directory: string): Promise<T[]> => {
   // Sort data from newest to oldest
   data.sort(
     (data1, data2) =>
-      +new Date(data2.publishDate) - +new Date(data1.publishDate)
+      +new Date(data2.publishedOn) - +new Date(data1.publishedOn)
   );
 
   return data;
